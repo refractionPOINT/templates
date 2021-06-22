@@ -14,6 +14,7 @@ resources:
   - sigma
   - logging
   - yara
+  - soteria-rules
 rules:
   vt-domains:
     name: vt-domains

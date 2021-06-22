@@ -11,6 +11,7 @@ resources:
   - sigma
   - logging
   - yara
+  - soteria-rules
 integrity:
   linux-key:
     patterns:
