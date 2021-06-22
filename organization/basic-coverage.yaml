@@ -1,7 +1,6 @@
 version: 3
 resources:
   api:
-  - vt
   - comms
   - insight
   replicant:
@@ -12,39 +11,6 @@ resources:
   - sigma
   - logging
   - yara
-rules:
-  vt-domains:
-    name: vt-domains
-    namespace: general
-    detect:
-      event: DNS_REQUEST
-      metadata_rules:
-        length of: true
-        op: is greater than
-        path: /
-        value: 4
-      op: lookup
-      path: event/DOMAIN_NAME
-      resource: lcr://api/vt
-    respond:
-    - action: report
-      name: vt-bad-domain
-  vt-hashes:
-    name: vt-hashes
-    namespace: general
-    detect:
-      event: CODE_IDENTITY
-      metadata_rules:
-        length of: true
-        op: is greater than
-        path: /
-        value: 3
-      op: lookup
-      path: event/HASH
-      resource: lcr://api/vt
-    respond:
-    - action: report
-      name: vt-bad-hash
 integrity:
   linux-key:
     patterns:
