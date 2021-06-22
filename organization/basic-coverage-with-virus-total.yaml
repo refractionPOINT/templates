@@ -1,6 +1,6 @@
 version: 3
 org-value:
-  vt: {{YOUR_VIRUS_TOTAL_API_KEY_HERE}}
+  vt: <<YOUR_VIRUS_TOTAL_API_KEY_HERE>>
 resources:
   api:
   - vt
