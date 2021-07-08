@@ -1,0 +1,16 @@
+basic-coverage:
+  short_desc: standard coverage for all platforms
+  long_desc: Provides a good standard coverage using several large rule set providers like `soteria-rules` and `sigma`. Does not require any additional configuration.
+  icon: https://storage.googleapis.com/limacharlie-io/logo_mono.png
+  author: refractionPOINT
+  contact: info@limacharlie.io
+  doc: https://doc.limacharlie.io
+  config_file: organization/basic-coverage.yaml
+basic-coverage-with-virus-total:
+  short_desc: standard coverage for all platforms, plus VirusTotal coverage
+  long_desc: Provides a good standard coverage using several large rule set providers like `soteria-rules` and `sigma`. Requires setting the VirusTotal API key.
+  icon: https://storage.googleapis.com/limacharlie-io/logo_mono.png
+  author: refractionPOINT
+  contact: info@limacharlie.io
+  doc: https://doc.limacharlie.io
+  config_file: organization/basic-coverage-with-virus-toral.yaml
