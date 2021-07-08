@@ -1,0 +1,69 @@
+version: 3
+artifact:
+  windows-defender-logs:
+    patterns:
+    - wel://Microsoft-Windows-Windows Defender/Operational:*
+    tags: []
+    platforms:
+    - windows
+rules:
+  windows-defender-malware-detected:
+    namespace: general
+    detect:
+      event: WEL
+      op: and
+      rules:
+      - op: is
+        path: event/EVENT/Event/System/Channel
+        value: Microsoft-Windows-Windows Defender/Operational
+      - op: is
+        path: event/EVENT/Event/System/EventID
+        value: "1006"
+    respond:
+    - action: report
+      name: windows-defender-malware-detected
+  windows-defender-history-deleted:
+    namespace: general
+    detect:
+      event: WEL
+      op: and
+      rules:
+      - op: is
+        path: event/EVENT/Event/System/Channel
+        value: Microsoft-Windows-Windows Defender/Operational
+      - op: is
+        path: event/EVENT/Event/System/EventID
+        value: "1013"
+    respond:
+    - action: report
+      name: windows-defender-history-deleted
+  windows-defender-behavior-detected:
+    namespace: general
+    detect:
+      event: WEL
+      op: and
+      rules:
+      - op: is
+        path: event/EVENT/Event/System/Channel
+        value: Microsoft-Windows-Windows Defender/Operational
+      - op: is
+        path: event/EVENT/Event/System/EventID
+        value: "1015"
+    respond:
+    - action: report
+      name: windows-defender-behavior-detected
+  windows-defender-activity-detected:
+    namespace: general
+    detect:
+      event: WEL
+      op: and
+      rules:
+      - op: is
+        path: event/EVENT/Event/System/Channel
+        value: Microsoft-Windows-Windows Defender/Operational
+      - op: is
+        path: event/EVENT/Event/System/EventID
+        value: "1116"
+    respond:
+    - action: report
+      name: windows-defender-activity-detected
