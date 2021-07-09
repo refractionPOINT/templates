@@ -14,3 +14,11 @@ basic-coverage-with-virus-total:
   contact: info@limacharlie.io
   doc: https://doc.limacharlie.io
   config_file: organization/basic-coverage-with-virus-total.yaml
+windows-defender-alerts:
+  short_desc: generate detections on Windows Defender alerts
+  long_desc: Uses the real-time Windows Event Log collection to report on Windows Defender detections.
+  icon: https://storage.googleapis.com/limacharlie-io/logo_mono.png
+  author: refractionPOINT
+  contact: info@limacharlie.io
+  doc: https://doc.limacharlie.io
+  config_file: anti-virus/windows-defender.yaml
