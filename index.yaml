@@ -22,3 +22,11 @@ windows-defender-alerts:
   contact: info@limacharlie.io
   doc: https://doc.limacharlie.io
   config_file: anti-virus/windows-defender.yaml
+sleeper-deployment:
+  short_desc: sleeper deployments with usage based billing
+  long_desc: Sets up events collected to be off by default, but on for sensors with a `live` tag so specific endpoints can be brought online quickly and easily.
+  icon: https://storage.googleapis.com/limacharlie-io/logo_mono.png
+  author: refractionPOINT
+  contact: info@limacharlie.io
+  doc: https://doc.limacharlie.io
+  config_file: process/sleeper-deployment.yaml
