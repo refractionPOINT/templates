@@ -67,3 +67,18 @@ rules:
     respond:
     - action: report
       name: windows-defender-activity-detected
+  windows-defender-activity-prevented:
+    namespace: general
+    detect:
+      event: WEL
+      op: and
+      rules:
+      - op: is
+        path: event/EVENT/System/Channel
+        value: Microsoft-Windows-Windows Defender/Operational
+      - op: is
+        path: event/EVENT/System/EventID
+        value: "1117"
+    respond:
+    - action: report
+      name: windows-defender-malware-prevented
