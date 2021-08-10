@@ -30,3 +30,11 @@ sleeper-deployment:
   contact: info@limacharlie.io
   doc: https://doc.limacharlie.io
   config_file: process/sleeper-deployment.yaml
+net-zeek:
+  short_desc: capture all net traffic and retain the Zeek version
+  long_desc: Capture all traffic (full pcap) from Net for 60 days, keep the Zeek version of those logs for a year.
+  icon: https://storage.googleapis.com/limacharlie-io/logo_mono.png
+  author: refractionPOINT
+  contact: info@limacharlie.io
+  doc: https://doc.limacharlie.io
+  config_file: solutions/net-zeek.yaml
