@@ -1,0 +1,29 @@
+version: 3
+resources:
+  api:
+  - insight
+  - net
+  replicant:
+  - zeek
+rules:
+  pcap-to-zeek:
+    namespace: general
+    detect:
+      artifact type: pcap
+      event: ingest
+      op: exists
+      path: /
+      target: artifact_event
+    respond:
+    - action: service request
+      name: zeek
+      request:
+        action: run_on
+        artifact_id: <<routing/log_id>>
+        retention: 365
+net-policy:
+  capture-all:
+    type: capture
+    policy:
+      bpf_filter: ''
+      days_retention: 60
