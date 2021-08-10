@@ -17,18 +17,22 @@ resources:
   - soteria-rules
 rules:
   vt-domains:
-    name: vt-domains
-    namespace: general
     detect:
       event: DNS_REQUEST
-      metadata_rules:
-        length of: true
-        op: is greater than
-        path: /
-        value: 4
-      op: lookup
-      path: event/DOMAIN_NAME
-      resource: lcr://api/vt
+      op: and
+      rules:
+      - path: event/DOMAIN_NAME
+        value: .limacharlie.io
+        op: ends_with
+        not: true
+      - op: lookup
+        path: event/DOMAIN_NAME
+        resource: lcr://api/vt
+        metadata_rules:
+          op: is greater than
+          length of: true
+          path: /
+          value: 4
     respond:
     - action: report
       name: vt-bad-domain
