@@ -23,7 +23,7 @@ rules:
       rules:
       - path: event/DOMAIN_NAME
         value: .limacharlie.io
-        op: ends_with
+        op: ends with
         not: true
       - op: lookup
         path: event/DOMAIN_NAME
