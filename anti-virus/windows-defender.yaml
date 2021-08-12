@@ -1,4 +1,8 @@
 version: 3
+resources:
+  replicant:
+  - logging
+  - insight
 artifact:
   windows-defender-logs:
     patterns:
