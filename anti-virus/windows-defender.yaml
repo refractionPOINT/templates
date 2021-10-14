@@ -2,6 +2,7 @@ version: 3
 resources:
   replicant:
   - logging
+  api:
   - insight
 artifact:
   windows-defender-logs:
