@@ -110,12 +110,6 @@ integrity:
     tags: []
     platforms:
     - windows
-  linux-keys:
-    patterns:
-    - /root/.ssh/authorized_keys
-    tags: []
-    platforms:
-    - linux
 artifact:
   Windows Event Logs - From Disk:
     is_ignore_cert: false
