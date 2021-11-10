@@ -1,0 +1,156 @@
+version: 3
+resources:
+  api:
+  - insight
+  replicant:
+  - infrastructure-service
+  - integrity
+  - reliable-tasking
+  - replay
+  - responder
+  - sigma
+  - dumper
+  - exfil
+  - yara
+  - logging
+rules:
+  Microsoft Defender activity detected:
+    namespace: general
+    detect:
+      event: WEL
+      op: and
+      rules:
+      - op: is
+        path: event/EVENT/System/Channel
+        value: Microsoft-Windows-Windows Defender/Operational
+      - op: is
+        path: event/EVENT/System/EventID
+        value: "1116"
+    respond:
+    - action: report
+      name: Microsoft Defender activity detected
+  Microsoft Defender activity prevented:
+    namespace: general
+    detect:
+      event: WEL
+      op: and
+      rules:
+      - op: is
+        path: event/EVENT/System/Channel
+        value: Microsoft-Windows-Windows Defender/Operational
+      - op: is
+        path: event/EVENT/System/EventID
+        value: "1117"
+    respond:
+    - action: report
+      name: Microsoft Defender malware prevented
+  Microsoft Defender behavior detected:
+    namespace: general
+    detect:
+      event: WEL
+      op: and
+      rules:
+      - op: is
+        path: event/EVENT/System/Channel
+        value: Microsoft-Windows-Windows Defender/Operational
+      - op: is
+        path: event/EVENT/System/EventID
+        value: "1015"
+    respond:
+    - action: report
+      name: Microsoft Defender behavior detected
+  Microsoft Defender history deleted:
+    namespace: general
+    detect:
+      event: WEL
+      op: and
+      rules:
+      - op: is
+        path: event/EVENT/System/Channel
+        value: Microsoft-Windows-Windows Defender/Operational
+      - op: is
+        path: event/EVENT/System/EventID
+        value: "1013"
+    respond:
+    - action: report
+      name: Microsoft Defender history deleted
+  Microsoft Defender malware detected:
+    namespace: general
+    detect:
+      event: WEL
+      op: and
+      rules:
+      - op: is
+        path: event/EVENT/System/Channel
+        value: Microsoft-Windows-Windows Defender/Operational
+      - op: is
+        path: event/EVENT/System/EventID
+        value: "1006"
+    respond:
+    - action: report
+      name: Microsoft Defender malware detected
+integrity:
+  Linux - SSH keys:
+    patterns:
+    - /root/.ssh/authorized_keys
+    tags: []
+    platforms: []
+  Mac - Keychains:
+    patterns:
+    - /Library/Keychains/*
+    - /Network/Library/Keychains/*
+    tags: []
+    platforms:
+    - mac
+  Windows - boot files:
+    patterns:
+    - C:\\autoexec.bat
+    - c:\\boot.ini
+    - c:\\config.sys
+    tags: []
+    platforms:
+    - windows
+  linux-keys:
+    patterns:
+    - /root/.ssh/authorized_keys
+    tags: []
+    platforms:
+    - linux
+artifact:
+  Windows Event Logs - From Disk:
+    is_ignore_cert: false
+    is_delete_after: false
+    days_retention: 30
+    patterns:
+    - c:\\windows\\system32\\winevt\\logs\\Security.evtx
+    - c:\\windows\\system32\\winevt\\logs\\System.evtx
+    tags: []
+    platforms:
+    - windows
+  Windows Event Logs - Realtime:
+    is_ignore_cert: false
+    is_delete_after: false
+    days_retention: 365
+    patterns:
+    - wel://system:*
+    - wel://security:*
+    - wel://application:*
+    tags: []
+    platforms:
+    - windows
+  Microsoft Defender Logs:
+    is_ignore_cert: false
+    is_delete_after: false
+    days_retention: 0
+    patterns:
+    - wel://Microsoft-Windows-Windows Defender/Operational:*
+    tags: []
+    platforms:
+    - windows
+org-value:
+  domain: ""
+  otx: ""
+  pagerduty: ""
+  shodan: ""
+  twilio: ""
+  vt: ""
