@@ -4,7 +4,6 @@ org-value:
 resources:
   api:
   - vt
-  - comms
   - insight
   replicant:
   - infrastructure-service
