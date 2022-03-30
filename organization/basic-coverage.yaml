@@ -1,7 +1,6 @@
 version: 3
 resources:
   api:
-  - comms
   - insight
   replicant:
   - infrastructure-service
