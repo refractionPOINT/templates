@@ -1,0 +1,88 @@
+version: 3
+rules:
+  # This rule detects git clones or pushes to private
+  # repositories made from a user outside of the
+  # United States of America or Canada.
+  private-git-out-of-country:
+    detect:
+      events:
+        - git.clone
+        - git.push
+      op: and
+      rules:
+        - op: is platform
+          name: github
+        - op: is
+          path: repository_public
+          value: false
+        - not: true
+          op: or
+          rules:
+            - op: is
+              path: actor_location/country_code
+              value: US
+            - op: is
+              path: actor_location/country_code
+              value: CA
+    respond:
+      - action: report
+        name: private-git-out-of-country
+  # This rule detects git clones or pushes made outside
+  # of normal daytime hours on the east or west coast
+  # of north america.
+  private-git-off-hours:
+    detect:
+      events:
+        - git.clone
+        - git.push
+      op: and
+      rules:
+        - op: is platform
+          name: github
+        - op: is
+          path: repository_public
+          value: false
+        - op: is
+          not: true
+          path: actor
+          value: "google-cloud-build[bot]"
+      times:
+        - day_of_week_start: 1
+          day_of_week_end: 7
+          time_of_day_start: 0600
+          time_of_day_end: 1900
+          tz: America/Los_Angeles
+        - day_of_week_start: 1
+          day_of_week_end: 7
+          time_of_day_start: 0600
+          time_of_day_end: 1900
+          tz: America/New_York
+    respond:
+      - action: report
+        name: private-git-off-hours
+  # This rule detects git protected branch policies
+  # being overriden.
+  git-protected-branch-override:
+    detect:
+      event: protected_branch.policy_override
+      op: is platform
+      name: github
+    respond:
+      - action: report
+        name: git-protected-branch-override
+  # This rule detects a user cloning over 5
+  # private repositories over a period of 60 seconds.
+  git-possible-exfil:
+    detect:
+      event: git.clone
+      op: is platform
+      name: github
+      with events:
+        op: is
+        path: repository_public
+        value: false
+        count: 5
+        within: 60
+    respond:
+      - action: report
+        name: git-possible-exfil
