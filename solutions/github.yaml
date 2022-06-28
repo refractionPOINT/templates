@@ -13,16 +13,16 @@ rules:
         - op: is platform
           name: github
         - op: is
-          path: repository_public
+          path: event/repository_public
           value: false
         - not: true
           op: or
           rules:
             - op: is
-              path: actor_location/country_code
+              path: event/actor_location/country_code
               value: US
             - op: is
-              path: actor_location/country_code
+              path: event/actor_location/country_code
               value: CA
     respond:
       - action: report
@@ -40,22 +40,22 @@ rules:
         - op: is platform
           name: github
         - op: is
-          path: repository_public
+          path: event/repository_public
           value: false
         - op: is
           not: true
-          path: actor
+          path: event/actor
           value: "google-cloud-build[bot]"
       times:
         - day_of_week_start: 1
           day_of_week_end: 7
-          time_of_day_start: 600 # Don't use 0600 as YAML interprets it as Octal.
-          time_of_day_end: 1900
+          time_of_day_start: 1900
+          time_of_day_end: 600 # Don't use 0600 as YAML interprets it as Octal.
           tz: America/Los_Angeles
         - day_of_week_start: 1
           day_of_week_end: 7
-          time_of_day_start: 600 # Don't use 0600 as YAML interprets it as Octal.
-          time_of_day_end: 1900
+          time_of_day_start: 1900
+          time_of_day_end: 600 # Don't use 0600 as YAML interprets it as Octal.
           tz: America/New_York
     respond:
       - action: report
@@ -79,7 +79,7 @@ rules:
       name: github
       with events:
         op: is
-        path: repository_public
+        path: event/repository_public
         value: false
         count: 5
         within: 60
