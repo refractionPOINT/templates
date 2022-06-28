@@ -50,11 +50,21 @@ rules:
         - day_of_week_start: 1
           day_of_week_end: 7
           time_of_day_start: 1900
+          time_of_day_end: 2359
+          tz: America/Los_Angeles
+        - day_of_week_start: 1
+          day_of_week_end: 7
+          time_of_day_start: 0
           time_of_day_end: 600 # Don't use 0600 as YAML interprets it as Octal.
           tz: America/Los_Angeles
         - day_of_week_start: 1
           day_of_week_end: 7
           time_of_day_start: 1900
+          time_of_day_end: 2359
+          tz: America/New_York
+        - day_of_week_start: 1
+          day_of_week_end: 7
+          time_of_day_start: 0
           time_of_day_end: 600 # Don't use 0600 as YAML interprets it as Octal.
           tz: America/New_York
     respond:
