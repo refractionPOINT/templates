@@ -4,7 +4,7 @@ basic-coverage:
   icon: https://storage.googleapis.com/limacharlie-io/logo_mono.png
   author: refractionPOINT
   contact: info@limacharlie.io
-  doc: https://doc.limacharlie.io
+  doc: https://docs.limacharlie.io
   config_file: organization/basic-coverage.yaml
 basic-coverage-with-virus-total:
   short_desc: standard coverage for all platforms, plus VirusTotal coverage
@@ -12,7 +12,7 @@ basic-coverage-with-virus-total:
   icon: https://storage.googleapis.com/limacharlie-io/logo_mono.png
   author: refractionPOINT
   contact: info@limacharlie.io
-  doc: https://doc.limacharlie.io
+  doc: https://docs.limacharlie.io
   config_file: organization/basic-coverage-with-virus-total.yaml
 windows-defender-alerts:
   short_desc: generate detections on Windows Defender alerts
@@ -20,7 +20,7 @@ windows-defender-alerts:
   icon: https://storage.googleapis.com/limacharlie-io/logo_mono.png
   author: refractionPOINT
   contact: info@limacharlie.io
-  doc: https://doc.limacharlie.io
+  doc: https://docs.limacharlie.io
   config_file: anti-virus/windows-defender.yaml
 sleeper-deployment:
   short_desc: sleeper deployments with usage based billing
@@ -28,7 +28,7 @@ sleeper-deployment:
   icon: https://storage.googleapis.com/limacharlie-io/logo_mono.png
   author: refractionPOINT
   contact: info@limacharlie.io
-  doc: https://doc.limacharlie.io
+  doc: https://docs.limacharlie.io
   config_file: process/sleeper-deployment.yaml
 net-zeek:
   short_desc: capture all net traffic and retain the Zeek version
@@ -36,5 +36,5 @@ net-zeek:
   icon: https://storage.googleapis.com/limacharlie-io/logo_mono.png
   author: refractionPOINT
   contact: info@limacharlie.io
-  doc: https://doc.limacharlie.io
+  doc: https://docs.limacharlie.io
   config_file: solutions/net-zeek.yaml
